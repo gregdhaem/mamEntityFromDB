@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Child index{% endblock %}
+
+{% block body %}
+    <h1>Child index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PictureId</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Gender</th>
+                <th>DateOfBirth</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for child in children %}
+            <tr>
+                <td>{{ child.id }}</td>
+                <td>{{ child.pictureId }}</td>
+                <td>{{ child.firstName }}</td>
+                <td>{{ child.lastName }}</td>
+                <td>{{ child.gender }}</td>
+                <td>{{ child.dateOfBirth ? child.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('child_show', {'id': child.id}) }}">show</a>
+                    <a href="{{ path('child_edit', {'id': child.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('child_new') }}">Create new</a>
+{% endblock %}

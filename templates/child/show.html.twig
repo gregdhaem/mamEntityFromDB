@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Child{% endblock %}
+
+{% block body %}
+    <h1>Child</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ child.id }}</td>
+            </tr>
+            <tr>
+                <th>PictureId</th>
+                <td>{{ child.pictureId }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ child.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ child.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ child.gender }}</td>
+            </tr>
+            <tr>
+                <th>DateOfBirth</th>
+                <td>{{ child.dateOfBirth ? child.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('child_index') }}">back to list</a>
+
+    <a href="{{ path('child_edit', {'id': child.id}) }}">edit</a>
+
+    {{ include('child/_delete_form.html.twig') }}
+{% endblock %}
